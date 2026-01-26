@@ -14,6 +14,7 @@ import {
 } from 'lucide-react'
 import Personalfrominfo from '../Componet/Personalfrominfo'
 import ResumePreview from '../Componet/ResumePreview'
+import TempleteSelector from '../Componet/TempleteSelector'
 
 
 
@@ -30,7 +31,19 @@ const Resumebuilder = () => {
     const { ResumeId } = useParams()
 
     const [activeSectionIndex, setActiveSectionIndex] = useState(0)
-    const [resumeData, setResumeData] = useState(null)
+    const [resumeData, setResumeData] = useState({
+    _id: "",
+    title: "",
+    personal_info: {},
+    professional_summary: "",
+    experience: [],
+    education: [],
+    project: [],
+    skill: [],
+    template: "classic",
+    accent_color: "#3b82f6",
+    public: false,
+  });
     const [removeBackground, setremoveBackground] = useState(false)
     const activeSection = Sections[activeSectionIndex]
 
@@ -44,6 +57,7 @@ const Resumebuilder = () => {
     }, [ResumeId])
 
     return (
+
         <div>
             <div className='max-w-7xl mx-auto px-4 py-6'>
                 <Link to="/App" className='inline-flex gap-2 items-center text-slate-500 hover:text-slate-700'>
@@ -67,29 +81,41 @@ const Resumebuilder = () => {
                                 }}
                             />
 
-                            {/* Navigation */}
-                            <div className='flex justify-end items-center mt-4'>
-                                {activeSectionIndex !== 0 && (
-                                    <button
-                                        onClick={() => setActiveSectionIndex(i => Math.max(i - 1, 0))}
-                                        className='flex items-center gap-1 p-2 text-sm text-gray-600 hover:bg-gray-100 rounded'
-                                    >
-                                        <ChevronLeftIcon className='size-4' /> Previous
-                                    </button>
-                                )}
 
-                                <button
-                                    onClick={() =>
-                                        setActiveSectionIndex(i => Math.min(i + 1, Sections.length - 1))
-                                    }
-                                    disabled={activeSectionIndex === Sections.length - 1}
-                                    className={`flex items-center gap-1 p-2 text-sm rounded ${activeSectionIndex === Sections.length - 1
-                                        ? 'opacity-50 cursor-not-allowed'
-                                        : 'text-gray-600 hover:bg-gray-100'
-                                        }`}
-                                >
-                                    Next <ChevronRight className='size-4' />
-                                </button>
+
+                            <div className="flex justify-between items-center mb-6 border-b border-gray-300 py-1">
+                                <div className="flex items-center gap-2">
+                                    <TempleteSelector
+                                        selectedTemplate={resumeData.template}
+                                        onChange={(template) =>
+                                            setResumeData((prev) => ({ ...prev, template }))
+                                        } />
+
+
+                                </div>
+                                <div className='flex justify-end items-center mt-4'>
+                                    {activeSectionIndex !== 0 && (
+                                        <button
+                                            onClick={() => setActiveSectionIndex(i => Math.max(i - 1, 0))}
+                                            className='flex items-center gap-1 p-2 text-sm text-gray-600 hover:bg-gray-100 rounded'
+                                        >
+                                            <ChevronLeftIcon className='size-4' /> Previous
+                                        </button>
+                                    )}
+
+                                    <button
+                                        onClick={() =>
+                                            setActiveSectionIndex(i => Math.min(i + 1, Sections.length - 1))
+                                        }
+                                        disabled={activeSectionIndex === Sections.length - 1}
+                                        className={`flex items-center gap-1 p-2 text-sm rounded ${activeSectionIndex === Sections.length - 1
+                                            ? 'opacity-50 cursor-not-allowed'
+                                            : 'text-gray-600 hover:bg-gray-100'
+                                            }`}
+                                    >
+                                        Next <ChevronRight className='size-4' />
+                                    </button>
+                                </div>
                             </div>
                             {/*from content*/}
                             <div className='space-y-6'>
