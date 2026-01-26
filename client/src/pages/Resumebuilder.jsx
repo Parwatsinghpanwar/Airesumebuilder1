@@ -18,6 +18,9 @@ import TempleteSelector from '../Componet/TempleteSelector'
 import ColorPicker from '../Componet/ColorPicker'
 import ProfessionalSummaryForm from '../Componet/ProfessionalSummaryForm'
 import ExperienceForm from '../Componet/ExperienceForm'
+import EducationForm from '../Componet/EducationForm'
+import ProjectForm from '../Componet/ProjectForm'
+
 
 
 
@@ -165,7 +168,7 @@ const Resumebuilder = () => {
                                         }
                                     />
                                 )}
-                                {/* {activeSection.id === "education" && (
+                                {activeSection.id === "education" && (
                                     <EducationForm
                                         data={resumeData.education}
                                         onChange={(data) =>
@@ -176,7 +179,7 @@ const Resumebuilder = () => {
                                         }
                                     />
                                 )}
-                                {activeSection.id === "projects" && (
+                                {activeSection.id === "project" && (
                                     <ProjectForm
                                         data={resumeData.project}
                                         onChange={(data) =>
@@ -187,28 +190,8 @@ const Resumebuilder = () => {
                                         }
                                     />
                                 )}
-                                {activeSection.id === "skills" && (
-                                    <SkillsForm
-                                        data={resumeData.skills}
-                                        onChange={(data) =>
-                                            setResumeData((prev) => ({
-                                                ...prev,
-                                                skills: data,
-                                            }))
-                                        }
-                                    />
-                                )}
-                                {activeSection.id === "certification" && (
-                                    <CertificationForm
-                                        data={resumeData.certification}
-                                        onChange={(data) =>
-                                            setResumeData((prev) => ({
-                                                ...prev,
-                                                certification: data,
-                                            }))
-                                        }
-                                    />
-                                )} */}
+
+
                             </div>
 
                         </div>
