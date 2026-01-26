@@ -29,7 +29,7 @@ const Deshboad = () => {
         event.preventDefault();
         setShowUploadResume(false);
         navigate(`/App/Builder/res123`);
-  }
+    }
     const editTitle = async (event) => {
         event.preventDefault();
         setEditResumeId('');
@@ -37,9 +37,9 @@ const Deshboad = () => {
     const Deletresume = async (ResumeId) => {
         const confirm = window.confirm("Are you sure you want to delete this resume?")
         if (confirm) {
-            setAllresumes(prev => prev.filter(resume => resume.id !== ResumeId))
+            setAllresumes(prev => prev.filter(resume => resume._id !== ResumeId))
         }
-        
+
     }
 
     useEffect(() => {
@@ -65,7 +65,7 @@ const Deshboad = () => {
                     {allResumes.map((resume, index) => {
                         const basecolor = color[index % color.length]
                         return (
-                            <button key={index} onClick={()=> navigate(`/App/builder/${resume.id}`)} className="relative w-36 sm:max-w-38 h-48 flex flex-col items-center justify-center rounded-lg gap-2 border group hover:shadow-lg transition-all duration-300 cursor-pointer"
+                            <button key={index} onClick={() => navigate(`/App/builder/${resume._id}`)} className="relative w-36 sm:max-w-38 h-48 flex flex-col items-center justify-center rounded-lg gap-2 border group hover:shadow-lg transition-all duration-300 cursor-pointer"
                                 style={{
                                     background: `linear-gradient(135deg, ${basecolor}10, ${basecolor}40)`,
                                     borderColor: basecolor + '40'
@@ -78,9 +78,9 @@ const Deshboad = () => {
 
                                     Update On{new Date(resume.updatedAt).toLocaleDateString()}
                                 </p>
-                                <div  onClick={(e)=>{e.stopPropagation()}} className='absolute top-1 right-1 group-hover:flex items-center hidden' style={{ background: basecolor }}>
-                                    <TrashIcon onClick={()=>{Deletresume(resume._id)}} className='size-7 p-1.5 hover:bg-white/50 rounded text-slate-700 transition-colors' />
-                                    <PenIcon onClick={()=>{setEditResumeId(resume._id);setTitle(resume.title)}} className='size-7 p-1.5 hover:bg-white/50 rounded text-slate-700 transition-colors' />
+                                <div onClick={(e) => { e.stopPropagation() }} className='absolute top-1 right-1 group-hover:flex items-center hidden' style={{ background: basecolor }}>
+                                    <TrashIcon onClick={() => { Deletresume(resume._id) }} className='size-7 p-1.5 hover:bg-white/50 rounded text-slate-700 transition-colors' />
+                                    <PenIcon onClick={() => { setEditResumeId(resume._id); setTitle(resume.title) }} className='size-7 p-1.5 hover:bg-white/50 rounded text-slate-700 transition-colors' />
                                 </div>
 
                             </button>
@@ -166,7 +166,7 @@ const Deshboad = () => {
 
                                     </div>
                                 </label>
-                                <input type='file' id='resume-input' accept='.pdf' hidden onChange={(e)=>setResume(e.target.files[0])}></input>
+                                <input type='file' id='resume-input' accept='.pdf' hidden onChange={(e) => setResume(e.target.files[0])}></input>
                             </div>
 
                             <button

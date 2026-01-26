@@ -2,102 +2,136 @@ import React, { useState, useEffect } from 'react'
 import { dummyResumeData } from '../assets/assets'
 import { Link, useParams } from 'react-router-dom'
 import {
-  ArrowLeftIcon,
-  Briefcase,
-  ChevronLeftIcon,
-  ChevronRight,
-  FileText,
-  FolderIcon,
-  GraduationCapIcon,
-  Sparkles,
-  UserIcon
+    ArrowLeftIcon,
+    Briefcase,
+    ChevronLeftIcon,
+    ChevronRight,
+    FileText,
+    FolderIcon,
+    GraduationCapIcon,
+    Sparkles,
+    UserIcon
 } from 'lucide-react'
+import Personalfrominfo from '../Componet/Personalfrominfo'
+import ResumePreview from '../Componet/ResumePreview'
+
+
 
 const Sections = [
-  { id: "personal", name: "Personal Information", icon: UserIcon },
-  { id: "summary", name: "Summary", icon: FileText },
-  { id: "experience", name: "Work Experience", icon: Briefcase },
-  { id: "education", name: "Education", icon: GraduationCapIcon },
-  { id: "project", name: "Projects", icon: FolderIcon },
-  { id: "skills", name: "Skills", icon: Sparkles },
+    { id: "personal", name: "Personal Information", icon: UserIcon },
+    { id: "summary", name: "Summary", icon: FileText },
+    { id: "experience", name: "Work Experience", icon: Briefcase },
+    { id: "education", name: "Education", icon: GraduationCapIcon },
+    { id: "project", name: "Projects", icon: FolderIcon },
+    { id: "skills", name: "Skills", icon: Sparkles },
 ]
 
 const Resumebuilder = () => {
-  const { ResumeId } = useParams()
+    const { ResumeId } = useParams()
 
-  const [activeSectionIndex, setActiveSectionIndex] = useState(0)
-  const [resumeData, setResumeData] = useState(null)
+    const [activeSectionIndex, setActiveSectionIndex] = useState(0)
+    const [resumeData, setResumeData] = useState(null)
+    const [removeBackground, setremoveBackground] = useState(false)
+    const activeSection = Sections[activeSectionIndex]
 
-  useEffect(() => {
-    const resume = dummyResumeData.find(r => r.id === ResumeId)
-    if (resume) {
-      setResumeData(resume)
-      document.title = resume.title
-    }
-  }, [ResumeId])
 
-  return (
-    <div>
-      <div className='max-w-7xl mx-auto px-4 py-6'>
-        <Link to="/App" className='inline-flex gap-2 items-center text-slate-500 hover:text-slate-700'>
-          <ArrowLeftIcon className='size-4' /> Back to Dashboard
-        </Link>
-      </div>
+    useEffect(() => {
+        const resume = dummyResumeData.find(r => r._id === ResumeId)
+        if (resume) {
+            setResumeData(resume)
+            document.title = resume.title
+        }
+    }, [ResumeId])
 
-      <div className='max-w-7xl mx-auto px-4 pb-8'>
-        <div className='grid lg:grid-cols-12 gap-8'>
-
-          {/* LEFT */}
-          <div className='relative lg:col-span-5'>
-            <div className='bg-white rounded-lg shadow-sm border p-6 pt-4 relative'>
-
-              {/* Progress bar */}
-              <hr className='absolute top-0 left-0 h-1 bg-gray-200 w-full' />
-              <hr
-                className='absolute top-0 left-0 h-1 bg-gradient-to-r from-green-500 to-green-600 transition-all duration-300'
-                style={{
-                  width: `${(activeSectionIndex * 100) / (Sections.length - 1)}%`
-                }}
-              />
-
-              {/* Navigation */}
-              <div className='flex justify-end items-center mt-4'>
-                {activeSectionIndex !== 0 && (
-                  <button
-                    onClick={() => setActiveSectionIndex(i => Math.max(i - 1, 0))}
-                    className='flex items-center gap-1 p-2 text-sm text-gray-600 hover:bg-gray-100 rounded'
-                  >
-                    <ChevronLeftIcon className='size-4' /> Previous
-                  </button>
-                )}
-
-                <button
-                  onClick={() =>
-                    setActiveSectionIndex(i => Math.min(i + 1, Sections.length - 1))
-                  }
-                  disabled={activeSectionIndex === Sections.length - 1}
-                  className={`flex items-center gap-1 p-2 text-sm rounded ${
-                    activeSectionIndex === Sections.length - 1
-                      ? 'opacity-50 cursor-not-allowed'
-                      : 'text-gray-600 hover:bg-gray-100'
-                  }`}
-                >
-                  Next <ChevronRight className='size-4' />
-                </button>
-              </div>
-
+    return (
+        <div>
+            <div className='max-w-7xl mx-auto px-4 py-6'>
+                <Link to="/App" className='inline-flex gap-2 items-center text-slate-500 hover:text-slate-700'>
+                    <ArrowLeftIcon className='size-4' /> Back to Dashboard
+                </Link>
             </div>
-          </div>
 
-          {/* RIGHT */}
-          <div className='lg:col-span-7 bg-gray-50 rounded-lg'>
-            {/* Resume Preview later */}
-          </div>
+            <div className='max-w-7xl mx-auto px-4 pb-8'>
+                <div className='grid lg:grid-cols-12 gap-8'>
 
+                    {/* LEFT */}
+                    <div className='relative lg:col-span-5'>
+                        <div className='bg-white rounded-lg shadow-sm border p-6 pt-4 relative'>
+
+                            {/* Progress bar */}
+                            <hr className='absolute top-0 left-0 h-1 bg-gray-200 w-full' />
+                            <hr
+                                className='absolute top-0 left-0 h-1 bg-gradient-to-r from-green-500 to-green-600 transition-all duration-300'
+                                style={{
+                                    width: `${(activeSectionIndex * 100) / (Sections.length - 1)}%`
+                                }}
+                            />
+
+                            {/* Navigation */}
+                            <div className='flex justify-end items-center mt-4'>
+                                {activeSectionIndex !== 0 && (
+                                    <button
+                                        onClick={() => setActiveSectionIndex(i => Math.max(i - 1, 0))}
+                                        className='flex items-center gap-1 p-2 text-sm text-gray-600 hover:bg-gray-100 rounded'
+                                    >
+                                        <ChevronLeftIcon className='size-4' /> Previous
+                                    </button>
+                                )}
+
+                                <button
+                                    onClick={() =>
+                                        setActiveSectionIndex(i => Math.min(i + 1, Sections.length - 1))
+                                    }
+                                    disabled={activeSectionIndex === Sections.length - 1}
+                                    className={`flex items-center gap-1 p-2 text-sm rounded ${activeSectionIndex === Sections.length - 1
+                                        ? 'opacity-50 cursor-not-allowed'
+                                        : 'text-gray-600 hover:bg-gray-100'
+                                        }`}
+                                >
+                                    Next <ChevronRight className='size-4' />
+                                </button>
+                            </div>
+                            {/*from content*/}
+                            <div className='space-y-6'>
+                                {activeSection.id === 'personal' && (
+                                    <Personalfrominfo
+                                        data={resumeData?.personal_info || {}}
+                                        onChange={(data) =>
+                                            setResumeData(prev => ({ ...prev, personal_info: data }))
+                                        }
+                                        removeBackground={removeBackground}
+                                        setremoveBackground={setremoveBackground}
+                                    />
+                                )}
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    {/* RIGHT */}
+                    <div className='lg:col-span-7 mx-lg:mt-6 '>
+
+                        <div>
+                            {/* button section */}
+
+                        </div>
+                        <div>
+                            {/* Resume Preview Section */}
+                            {resumeData && (
+                                <ResumePreview
+                                    data={resumeData}
+                                    template={resumeData.template}
+                                    accentColor={resumeData.accentColor}
+                                />
+                            )}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  )
+    )
 }
 
 export default Resumebuilder
