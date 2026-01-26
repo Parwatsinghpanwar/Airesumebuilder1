@@ -53,7 +53,7 @@ const ColorPicker = ({ selectedColor, onChange }) => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
 export default ColorPicker

@@ -16,6 +16,9 @@ import Personalfrominfo from '../Componet/Personalfrominfo'
 import ResumePreview from '../Componet/ResumePreview'
 import TempleteSelector from '../Componet/TempleteSelector'
 import ColorPicker from '../Componet/ColorPicker'
+import ProfessionalSummaryForm from '../Componet/ProfessionalSummaryForm'
+import ExperienceForm from '../Componet/ExperienceForm'
+
 
 
 
@@ -93,10 +96,10 @@ const Resumebuilder = () => {
                                         } />
                                     <ColorPicker
                                         selectedColor={resumeData.accent_color}
-                                        onChange={(color) =>
+                                        onChange={(accent_color) =>
                                             setResumeData((prev) => ({
                                                 ...prev,
-                                                accent_color: color,
+                                                accent_color
                                             }))
                                         }
                                     />
@@ -139,7 +142,73 @@ const Resumebuilder = () => {
                                         setremoveBackground={setremoveBackground}
                                     />
                                 )}
-
+                                {activeSection.id === "summary" && (
+                                    <ProfessionalSummaryForm
+                                        data={resumeData.professional_summary}
+                                        onChange={(data) =>
+                                            setResumeData((prev) => ({
+                                                ...prev,
+                                                professional_summary: data,
+                                            }))
+                                        }
+                                        setResumeDate={setResumeData}
+                                    />
+                                )}
+                                {activeSection.id === "experience" && (
+                                    <ExperienceForm
+                                        data={resumeData.experience}
+                                        onChange={(data) =>
+                                            setResumeData((prev) => ({
+                                                ...prev,
+                                                experience: data,
+                                            }))
+                                        }
+                                    />
+                                )}
+                                {/* {activeSection.id === "education" && (
+                                    <EducationForm
+                                        data={resumeData.education}
+                                        onChange={(data) =>
+                                            setResumeData((prev) => ({
+                                                ...prev,
+                                                education: data,
+                                            }))
+                                        }
+                                    />
+                                )}
+                                {activeSection.id === "projects" && (
+                                    <ProjectForm
+                                        data={resumeData.project}
+                                        onChange={(data) =>
+                                            setResumeData((prev) => ({
+                                                ...prev,
+                                                project: data,
+                                            }))
+                                        }
+                                    />
+                                )}
+                                {activeSection.id === "skills" && (
+                                    <SkillsForm
+                                        data={resumeData.skills}
+                                        onChange={(data) =>
+                                            setResumeData((prev) => ({
+                                                ...prev,
+                                                skills: data,
+                                            }))
+                                        }
+                                    />
+                                )}
+                                {activeSection.id === "certification" && (
+                                    <CertificationForm
+                                        data={resumeData.certification}
+                                        onChange={(data) =>
+                                            setResumeData((prev) => ({
+                                                ...prev,
+                                                certification: data,
+                                            }))
+                                        }
+                                    />
+                                )} */}
                             </div>
 
                         </div>
