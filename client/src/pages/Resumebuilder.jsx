@@ -15,6 +15,7 @@ import {
 import Personalfrominfo from '../Componet/Personalfrominfo'
 import ResumePreview from '../Componet/ResumePreview'
 import TempleteSelector from '../Componet/TempleteSelector'
+import ColorPicker from '../Componet/ColorPicker'
 
 
 
@@ -32,18 +33,18 @@ const Resumebuilder = () => {
 
     const [activeSectionIndex, setActiveSectionIndex] = useState(0)
     const [resumeData, setResumeData] = useState({
-    _id: "",
-    title: "",
-    personal_info: {},
-    professional_summary: "",
-    experience: [],
-    education: [],
-    project: [],
-    skill: [],
-    template: "classic",
-    accent_color: "#3b82f6",
-    public: false,
-  });
+        _id: "",
+        title: "",
+        personal_info: {},
+        professional_summary: "",
+        experience: [],
+        education: [],
+        project: [],
+        skill: [],
+        template: "classic",
+        accent_color: "#3b82f6",
+        public: false,
+    });
     const [removeBackground, setremoveBackground] = useState(false)
     const activeSection = Sections[activeSectionIndex]
 
@@ -84,12 +85,21 @@ const Resumebuilder = () => {
 
 
                             <div className="flex justify-between items-center mb-6 border-b border-gray-300 py-1">
-                                <div className="flex items-center gap-2">
+                                <div className="flex justify-between items-center mb-6 border-b border-gray-300 py-1">
                                     <TempleteSelector
                                         selectedTemplate={resumeData.template}
                                         onChange={(template) =>
                                             setResumeData((prev) => ({ ...prev, template }))
                                         } />
+                                    <ColorPicker
+                                        selectedColor={resumeData.accent_color}
+                                        onChange={(color) =>
+                                            setResumeData((prev) => ({
+                                                ...prev,
+                                                accent_color: color,
+                                            }))
+                                        }
+                                    />
 
 
                                 </div>
