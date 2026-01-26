@@ -20,6 +20,8 @@ import ProfessionalSummaryForm from '../Componet/ProfessionalSummaryForm'
 import ExperienceForm from '../Componet/ExperienceForm'
 import EducationForm from '../Componet/EducationForm'
 import ProjectForm from '../Componet/ProjectForm'
+import SkillsForm from '../Componet/SkillsForm'
+import CertificationForm from '../Componet/CertificationForm'
 
 
 
@@ -31,7 +33,8 @@ const Sections = [
     { id: "experience", name: "Work Experience", icon: Briefcase },
     { id: "education", name: "Education", icon: GraduationCapIcon },
     { id: "project", name: "Projects", icon: FolderIcon },
-    { id: "skills", name: "Skills", icon: Sparkles },
+    { id: "skill", name: "Skills", icon: Sparkles },
+    { id: "certification", name: "Certifications", icon: Sparkles },
 ]
 
 const Resumebuilder = () => {
@@ -47,6 +50,7 @@ const Resumebuilder = () => {
         education: [],
         project: [],
         skill: [],
+        certification:[],
         template: "classic",
         accent_color: "#3b82f6",
         public: false,
@@ -190,7 +194,28 @@ const Resumebuilder = () => {
                                         }
                                     />
                                 )}
-
+                                {activeSection.id === "skill" && (
+                                    <SkillsForm
+                                        data={resumeData.skill}
+                                        onChange={(data) =>
+                                            setResumeData((prev) => ({
+                                                ...prev,
+                                                skill: data,
+                                            }))
+                                        }
+                                    />
+                                )}
+                                {activeSection.id === "certification" && (
+                                    <CertificationForm
+                                        data={resumeData.certification}
+                                        onChange={(data) =>
+                                            setResumeData((prev) => ({
+                                                ...prev,
+                                                certification: data,
+                                            }))
+                                        }
+                                    />
+                                )}
 
                             </div>
 

@@ -20,7 +20,7 @@ const Hero = () => {
             <div className="min-h-screen pb-20">
                 {/* Navbar */}
                 <nav className="z-50 flex items-center justify-between w-full py-4 px-6 md:px-16 lg:px-24 xl:px-40 text-sm">
-                    <a href="https://prebuiltui.com">
+                    <a href="http://localhost:5173/Login">
                         <img src="/logo.svg" alt="logo" className="h-11 w-auto"/>
                     </a>
 
@@ -32,7 +32,7 @@ const Hero = () => {
                     </div>
 
                     <div className="flex gap-2">
-                        <Link to ='/App?state=register' className="hidden md:block px-6 py-2 bg-green-500 hover:bg-green-700 active:scale-95 transition-all rounded-full text-white">
+                        <Link to ='http://localhost:5173/Login' className="hidden md:block px-6 py-2 bg-green-500 hover:bg-green-700 active:scale-95 transition-all rounded-full text-white">
                             Get started
                         </Link>
                         <Link to='/App?state=Login' className="hidden md:block px-6 py-2 border active:scale-95 hover:bg-slate-50 transition-all rounded-full text-slate-700 hover:text-slate-900" >
