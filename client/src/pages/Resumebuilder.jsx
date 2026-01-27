@@ -33,7 +33,7 @@ const Sections = [
     { id: "experience", name: "Work Experience", icon: Briefcase },
     { id: "education", name: "Education", icon: GraduationCapIcon },
     { id: "project", name: "Projects", icon: FolderIcon },
-    { id: "skill", name: "Skills", icon: Sparkles },
+    { id: "skill", name: "Skill", icon: Sparkles },
     { id: "certification", name: "Certifications", icon: Sparkles },
 ]
 
@@ -50,13 +50,39 @@ const Resumebuilder = () => {
         education: [],
         project: [],
         skill: [],
-        certification:[],
+        certification: [],
         template: "classic",
         accent_color: "#3b82f6",
         public: false,
     });
     const [removeBackground, setremoveBackground] = useState(false)
     const activeSection = Sections[activeSectionIndex]
+    const saveResume = async () => {
+        try {
+            let updatedResumeData = structuredClone(resumeData);
+
+            if (typeof resumeData.personal_info.image === "object") {
+                delete updatedResumeData.personal_info.image;
+            }
+
+            const formData = new FormData();
+            formData.append("resumeId", ResumeId);
+            formData.append("resumeData", JSON.stringify(updatedResumeData));
+
+            removeBackground && formData.append("removeBackground", "yes");
+            typeof resumeData.personal_info.image === "object" &&
+                formData.append("image", resumeData.personal_info.image);
+
+            const { data } = await api.put("/api/resumes/update", formData, {
+                headers: { Authorization: token },
+            });
+
+            setResumeData(data.resume);
+            toast.success(data.message);
+        } catch (error) {
+            console.error("Error saving resume:", error);
+        }
+    };
 
 
     useEffect(() => {
@@ -216,6 +242,7 @@ const Resumebuilder = () => {
                                         }
                                     />
                                 )}
+                                
 
                             </div>
 

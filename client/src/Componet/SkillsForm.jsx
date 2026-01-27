@@ -1,7 +1,7 @@
 import { Plus, Sparkles, X } from "lucide-react";
 import { useState } from "react";
 
-const SkillsForm = ({ data, onChange }) => {
+const SkillsForm = ({ data = [], onChange }) => {
   const [newSkill, setNewSkill] = useState("");
 
   const addSkill = () => {
@@ -52,14 +52,14 @@ const SkillsForm = ({ data, onChange }) => {
         </button>
       </div>
 
-      {data.length > 0 ? (
+      {data && data.length > 0 ? (
         <div className="flex flex-wrap gap-2">
-          {data.map((skill, index) => (
+          {data.map((addSkill, index) => (
             <span
               key={index}
               className="flex items-center gap-1 px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
             >
-              {skill}
+              {addSkill}
               <button
                 onClick={() => removeSkill(index)}
                 className="ml-1 hover:bg-blue-200 rounded-full p-0.5 transition-colors"

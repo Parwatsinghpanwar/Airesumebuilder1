@@ -1,6 +1,6 @@
 import { GraduationCap, Plus, Trash2 } from "lucide-react";
 
-const EducationForm = ({ data, onChange }) => {
+const EducationForm = ({ data = [], onChange }) => {
   const addEducation = () => {
     const newEducation = {
       institution: "",

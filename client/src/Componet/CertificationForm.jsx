@@ -1,6 +1,6 @@
 import { Plus, ShieldCheck, Trash2 } from "lucide-react";
 
-const CertificationForm = ({ data, onChange }) => {
+const CertificationForm = ({ data = [], onChange }) => {
   const addCertification = () => {
     const newCertification = {
       certificate_name: "",
@@ -44,7 +44,7 @@ const CertificationForm = ({ data, onChange }) => {
         </button>
       </div>
 
-      {data.length === 0 ? (
+      {data && data.length > 0 ? (
         <div className="text-center py-8 text-gray-500">
           <ShieldCheck className="w-12 h-12 mx-auto mb-3 text-gray-300" />
           <p>No Certification added yet.</p>

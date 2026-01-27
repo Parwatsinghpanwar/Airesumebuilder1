@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 
 
-const ProfessionalSummaryForm = ({ data, onChange, setResumeDate }) => {
+const ProfessionalSummaryForm = ({ data = [], onChange, setResumeDate }) => {
   
  
 

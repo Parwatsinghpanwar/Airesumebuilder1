@@ -1,6 +1,6 @@
 import { Plus, Trash2 } from "lucide-react";
 
-const ProjectForm = ({ data, onChange }) => {
+const ProjectForm = ({ data = [], onChange }) => {
   const addProject = () => {
     const newProject = {
       name: "",

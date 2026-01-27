@@ -3,7 +3,7 @@ import { useState } from "react";
 
 
 
-const ExperienceForm = ({ data, onChange }) => {
+const ExperienceForm = ({ data = [], onChange }) => {
   
  
 
