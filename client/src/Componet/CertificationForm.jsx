@@ -1,6 +1,6 @@
 import { Plus, ShieldCheck, Trash2 } from "lucide-react";
 
-const CertificationForm = ({ data, onChange }) => {
+const CertificationForm = ({ data=[], onChange }) => {
   const addCertification = () => {
     const newCertification = {
       certificate_name: "",
