@@ -33,7 +33,7 @@ const Sections = [
     { id: "experience", name: "Work Experience", icon: Briefcase },
     { id: "education", name: "Education", icon: GraduationCapIcon },
     { id: "project", name: "Projects", icon: FolderIcon },
-    { id: "skill", name: "Skills", icon: Sparkles },
+    { id: "skills", name: "Skills", icon: Sparkles },
     { id: "certification", name: "Certifications", icon: Sparkles },
 ]
 
@@ -49,7 +49,7 @@ const Resumebuilder = () => {
         experience: [],
         education: [],
         project: [],
-        skill: [],
+        skills: [],
         certification: [],
         template: "classic",
         accent_color: "#3b82f6",
@@ -220,13 +220,13 @@ const Resumebuilder = () => {
                                         }
                                     />
                                 )}
-                                {activeSection.id === "skill" && (
+                                {activeSection.id === "skills" && (
                                     <SkillsForm
-                                        data={resumeData.skill}
+                                        data={resumeData.skills}
                                         onChange={(data) =>
                                             setResumeData((prev) => ({
                                                 ...prev,
-                                                skill: data,
+                                                skills: data,
                                             }))
                                         }
                                     />
