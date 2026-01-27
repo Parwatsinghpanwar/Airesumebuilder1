@@ -6,9 +6,11 @@ import {
     Briefcase,
     ChevronLeftIcon,
     ChevronRight,
+    DownloadIcon,
     FileText,
     FolderIcon,
     GraduationCapIcon,
+    Share2Icon,
     Sparkles,
     UserIcon
 } from 'lucide-react'
@@ -56,6 +58,9 @@ const Resumebuilder = () => {
     });
     const [removeBackground, setremoveBackground] = useState(false)
     const activeSection = Sections[activeSectionIndex]
+    const downloadResume = () => {
+        window.print();
+    };
     const saveResume = async () => {
         try {
             let updatedResumeData = structuredClone(resumeData);
@@ -80,6 +85,18 @@ const Resumebuilder = () => {
             toast.success(data.message);
         } catch (error) {
             console.error("Error saving resume:", error);
+        }
+    };
+
+
+    const handleShare = () => {
+        const frontendUrl = window.location.href.split("/app/")[0];
+        const resumeUrl = frontendUrl + "/view/" + ResumeId;
+
+        if (navigator.share) {
+            navigator.share({ url: resumeUrl, text: "My Resume" });
+        } else {
+            alert("Share not supported on this borwser.");
         }
     };
 
@@ -241,7 +258,14 @@ const Resumebuilder = () => {
                                         }
                                     />
                                 )}
-                                
+                                <button
+                                    onClick={() => {
+                                        toast.promise(saveResume, { loading: "Saving..." });
+                                    }}
+                                    className="bg-linear-to-br from-green-100 to-green-200 ring-green-300 text-green-600 ring hover:ring-green-400 transition-all rounded-md px-6 py-2 mt-6 text-sm"
+                                >
+                                    Save Changes
+                                </button>
 
                             </div>
 
@@ -250,12 +274,25 @@ const Resumebuilder = () => {
 
                     {/* RIGHT */}
                     <div className='lg:col-span-7 mx-lg:mt-6 '>
-
-                        <div>
-                            {/* button section */}
-
+                         <div className="relative w-full">
+                        <div className="absolute bottom-3 left-0 right-0 flex items-center justify-end gap-2">
+                            {resumeData.public && (
+                                <button
+                                    onClick={handleShare}
+                                    className="flex items-center p-2 px-4 gap-2 text-xs bg-linear-to-br from-blue-100 to to-blue-200 text-blue-600 rounded-lg ring-blue-300 hover:ring transition-colors"
+                                >
+                                    <Share2Icon className="size-4" /> Share
+                                </button>
+                            )}
+                            <button
+                                onClick={downloadResume}
+                                className="flex items-center p-2 px-6 gap-2 text-xs bg-linear-to-br from-green-100 to-green-200 text-green-600 ring-green-300 rounded-lg hover:ring transition-colors"
+                            >
+                                <DownloadIcon className="size-4" /> Download
+                            </button>
                         </div>
-                        <div>
+                        </div>
+                        
                             {/* Resume Preview Section */}
                             {resumeData && (
                                 <ResumePreview
@@ -264,7 +301,7 @@ const Resumebuilder = () => {
                                     accentColor={resumeData.accent_color}
                                 />
                             )}
-                        </div>
+                        
                     </div>
 
                 </div>
