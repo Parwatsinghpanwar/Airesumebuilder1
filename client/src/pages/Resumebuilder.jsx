@@ -33,7 +33,7 @@ const Sections = [
     { id: "experience", name: "Work Experience", icon: Briefcase },
     { id: "education", name: "Education", icon: GraduationCapIcon },
     { id: "project", name: "Projects", icon: FolderIcon },
-    { id: "skill", name: "Skill", icon: Sparkles },
+    { id: "skill", name: "Skills", icon: Sparkles },
     { id: "certification", name: "Certifications", icon: Sparkles },
 ]
 
@@ -262,7 +262,7 @@ const Resumebuilder = () => {
                                 <ResumePreview
                                     data={resumeData}
                                     template={resumeData.template}
-                                    accentColor={resumeData.accentColor}
+                                    accentColor={resumeData.accent_color}
                                 />
                             )}
                         </div>
