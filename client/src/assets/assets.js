@@ -64,7 +64,9 @@ export const dummyResumeData = [
                 gpa: "",
                 _id: "68d2a31a1c4dd38875bb0382"
             }
+
         ],
+        
         template: "minimal-image",
         accent_color: "#14B8A6",
         project: [
