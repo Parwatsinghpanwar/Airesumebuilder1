@@ -52,6 +52,7 @@ const Resumebuilder = () => {
         education: [],
         project: [],
         skills: [],
+        certification: [],
         template: "classic",
         accent_color: "#3b82f6",
         public: false,
